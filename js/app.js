@@ -1,17 +1,17 @@
 // Datos de trabajo
 
 const flores = [
-    {nombre: "rosa", color: "rojo", floracion: "primavera", stock: true},
-    {nombre: "rosa", color: "blanco", floracion: "verano", stock: true},
-    {nombre: "jazmín", color: "blanco", floracion: "verano", stock: false},
-    {nombre: "crisantemo", color: "blanco", floracion: "otoño", stock: false},
-    {nombre: "cerezo", color: "blanco", floracion: "primavera", stock: false},
-    {nombre: "clavel", color: "rojo", floracion: "verano", stock: true},
-]
+  { nombre: "rosa", color: "rojo", floracion: "primavera", stock: true },
+  { nombre: "rosa", color: "blanco", floracion: "verano", stock: true },
+  { nombre: "jazmín", color: "blanco", floracion: "verano", stock: false },
+  { nombre: "crisantemo", color: "blanco", floracion: "otoño", stock: false },
+  { nombre: "cerezo", color: "blanco", floracion: "primavera", stock: false },
+  { nombre: "clavel", color: "rojo", floracion: "verano", stock: true },
+];
 
-flores.sort( (a, b) => { 
-    return a.nombre.localeCompare(b.nombre, "es-ES", {numeric: true});   
-})
+flores.sort((a, b) => {
+  return a.nombre.localeCompare(b.nombre, "es-ES", { numeric: true });
+});
 
 // console.log(flores);
 
@@ -28,13 +28,13 @@ let html1 = "<ul>";
 //     console.log(flores[i]);
 // }
 
-flores.forEach( flor => {
-    let textoStock = ""
-    if (!flor.stock) {
-        textoStock = "no ";
-    } 
-    html1 += `<li>Flor: ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion} y ${textoStock}tenemos stock</li>`;
-})
+flores.forEach((flor) => {
+  let textoStock = "";
+  if (!flor.stock) {
+    textoStock = "no ";
+  }
+  html1 += `<li>Flor: ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion} y ${textoStock}tenemos stock</li>`;
+});
 
 html1 += "</ul>";
 ejercicio1.innerHTML = html1;
@@ -62,11 +62,10 @@ flores.forEach((flor) => {
 html2 += "</ul>";
 ejercicio2.innerHTML = html2;
 
-
 // ==============================================================================
 // EJERCICIO 3
 
-// A partir del formulario form-seleccion, hay que mostrar que datos 
+// A partir del formulario form-seleccion, hay que mostrar que datos
 // corresponden a la selección realizada.
 // Se mostrarán en forma de lista como los modelos anteriores.
 
@@ -74,35 +73,96 @@ let formSeleccion = document.getElementById("form-seleccion");
 let radioColor = document.getElementsByName("color");
 let radioFloracion = document.getElementsByName("floracion");
 let radioStock = document.getElementsByName("stock");
+let ejercicio3 = document.getElementById("ejercicio3");
 
 formSeleccion.addEventListener("change", (e) => {
-    e.preventDefault();
-    // console.log("Has hecho un cambio");
+  ejercicio3.innerHTML = "";
+  e.preventDefault();
+  // console.log("Has hecho un cambio");
 
-    let color = ""    
-    for (let i = 0; i < radioColor.length; i++) {
-        if (radioColor[i].checked) {
-            color = radioColor[i].value;
-            break;
-        }
+  let color = "";
+  for (let i = 0; i < radioColor.length; i++) {
+    if (radioColor[i].checked) {
+      color = radioColor[i].value;
+      break;
     }
-    console.log(color);
+  }
+  // console.log(color);
 
-    let floracion = ""    
-    for (let i = 0; i < radioFloracion.length; i++) {
-        if (radioFloracion[i].checked) {
-            floracion = radioFloracion[i].value;
-            break;
-        }
+  let floracion = "";
+  for (let i = 0; i < radioFloracion.length; i++) {
+    if (radioFloracion[i].checked) {
+      floracion = radioFloracion[i].value;
+      break;
     }
-    console.log(floracion);
+  }
+  // console.log(floracion);
 
-    let stock = ""    
-    for (let i = 0; i < radioStock.length; i++) {
-        if (radioStock[i].checked) {
-            stock = radioStock[i].value;
-            break;
-        }
+  let stock = "";
+  for (let i = 0; i < radioStock.length; i++) {
+    if (radioStock[i].checked) {
+      stock = radioStock[i].value;
+      break;
     }
-    console.log(stock);
-})
+  }
+  stock = Boolean(stock);
+
+  let respuestaHTML = "<ul>";
+
+  flores.forEach((flor) => {
+    // console.log(typeof flor.stock);
+    let textoStock = "";
+    if (!flor.stock) {
+      textoStock = "no ";
+    }
+    // console.log(flores);
+    // if (flor.stock == stock) console.log(stock);
+    if (
+      flor.color == color &&
+      flor.floracion == floracion &&
+      flor.stock == stock
+    ) {
+      respuestaHTML += `<li>Flor: ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion} y tenemos ${textoStock}stock</li>`;
+    }
+  });
+  respuestaHTML += "</ul>";
+
+  if (respuestaHTML == "<ul></ul>") {
+    respuestaHTML = "No hay flor que cumpla las condiciones";
+  }
+
+  ejercicio3.innerHTML = respuestaHTML;
+});
+
+// ==============================================================================
+// ==============================================================================
+// EJERCICIO 4
+
+// Obtener la flor que corresponda a la indicación del usuario.
+
+let ejercicio4 = document.getElementById("ejercicio4");
+let formFlor = document.getElementById("form-flor");
+
+
+formFlor.addEventListener("submit", (e) => {
+  e.preventDefault();
+  let respuestaHTML = "";
+
+  let respuestaUsuario = formFlor[0].value.toLocaleLowerCase();
+  if (respuestaUsuario.trim() == "") {
+    respuestaHTML = "No se aceptan datos sin contenido";
+    ejercicio4.innerHTML = respuestaHTML;
+    return;
+  }
+
+  flores.forEach((flor) => { 
+    if (flor.nombre.toLocaleLowerCase().includes(respuestaUsuario)) {
+      respuestaHTML += `<p>Flor: ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion} y tenemos stock</p>`;
+    }
+  })
+  if (respuestaHTML == "") {
+    respuestaHTML = "No hay flor que cumpla las condiciones";
+  }
+  ejercicio4.innerHTML = respuestaHTML;
+
+});
