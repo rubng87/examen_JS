@@ -1,6 +1,5 @@
 // Datos de trabajo
 
-
 const flores = [
     {nombre: "rosa", color: "rojo", floracion: "primavera", stock: true},
     {nombre: "rosa", color: "blanco", floracion: "verano", stock: true},
@@ -15,7 +14,6 @@ flores.sort( (a, b) => {
 })
 
 // console.log(flores);
-// 1 Ejercicio ==============================================================================
 
 // Tiene que mostrarse en el HTML los datos de las flores
 // de esta manera:
@@ -41,7 +39,7 @@ flores.forEach( flor => {
 html1 += "</ul>";
 ejercicio1.innerHTML = html1;
 
-// 2 Ejercicio ==============================================================================
+// ==============================================================================
 
 // Listar las flores de color blanco que florecen en verano
 // Modelo de mensaje de salida:
@@ -64,37 +62,47 @@ flores.forEach((flor) => {
 html2 += "</ul>";
 ejercicio2.innerHTML = html2;
 
+
 // ==============================================================================
 // EJERCICIO 3
 
 // A partir del formulario form-seleccion, hay que mostrar que datos 
 // corresponden a la selección realizada.
 // Se mostrarán en forma de lista como los modelos anteriores.
-// Si no hay ninguna flor que cumpla las condiciones, se mostrará este mensaje:
-// "No hay ninguna flor que cumpla las condiciones"
 
-let formSeleccion = document.getElementById("form-seleccion")
+let formSeleccion = document.getElementById("form-seleccion");
+let radioColor = document.getElementsByName("color");
+let radioFloracion = document.getElementsByName("floracion");
+let radioStock = document.getElementsByName("stock");
 
 formSeleccion.addEventListener("change", (e) => {
     e.preventDefault();
-    console.log("hiciste un cambio");
+    // console.log("Has hecho un cambio");
+
+    let color = ""    
+    for (let i = 0; i < radioColor.length; i++) {
+        if (radioColor[i].checked) {
+            color = radioColor[i].value;
+            break;
+        }
+    }
+    console.log(color);
+
+    let floracion = ""    
+    for (let i = 0; i < radioFloracion.length; i++) {
+        if (radioFloracion[i].checked) {
+            floracion = radioFloracion[i].value;
+            break;
+        }
+    }
+    console.log(floracion);
+
+    let stock = ""    
+    for (let i = 0; i < radioStock.length; i++) {
+        if (radioStock[i].checked) {
+            stock = radioStock[i].value;
+            break;
+        }
+    }
+    console.log(stock);
 })
-
-
-
-
-let ejercicio3 = document.getElementById("ejercicio3");
-let html3 = "<ul>";
-
-let seleccion = ""
-
-for (let i = 0; i < formSeleccion.length; i++) {
-    if (formSeleccion[i].checked == true) {
-        seleccion = formSeleccion[i].value
-        
-    } 
-}
-html3 += "</ul>";
-ejercicio3.innerText = html3;
-
-let formulario = document.getElementById("form-seleccion");
