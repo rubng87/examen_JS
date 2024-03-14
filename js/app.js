@@ -1,17 +1,19 @@
 // Datos de trabajo
+localStorage.removeItem('flores')
 
-const flores = [
-  { nombre: "rosa", color: "rojo", floracion: "primavera", stock: true, precio: 8.00 },
-  { nombre: "rosa", color: "blanco", floracion: "verano", stock: true, precio: 10.00 },
-  { nombre: "jazmín", color: "blanco", floracion: "verano", stock: false, precio: 12.00 },
-  { nombre: "crisantemo", color: "blanco", floracion: "otoño", stock: false, precio: 5.00 },
-  { nombre: "cerezo", color: "blanco", floracion: "primavera", stock: false, precio: 25.00 },
-  { nombre: "clavel", color: "rojo", floracion: "verano", stock: true, precio: 4.50 },
+const flores = JSON.parse(localStorage.getItem('flores')) || [
+  { nombre: "rosa", color: "rojo", floracion: "primavera", stock: true },
+  { nombre: "rosa", color: "blanco", floracion: "verano", stock: true },
+  { nombre: "jazmín", color: "blanco", floracion: "verano", stock: false },
+  { nombre: "crisantemo", color: "blanco", floracion: "otoño", stock: false },
+  { nombre: "cerezo", color: "blanco", floracion: "primavera", stock: false },
+  { nombre: "clavel", color: "rojo", floracion: "verano", stock: true },
 ];
 
-flores.sort((a, b) => {
-  return a.nombre.localeCompare(b.nombre, "es-ES", { numeric: true });
-});
+
+
+// ==============================================================================
+// EJERCICIO 1
 
 // console.log(flores);
 
@@ -20,33 +22,45 @@ flores.sort((a, b) => {
 // Como lista
 // Flor: rosa, de color rojo, florece en primavera y tenemos stock
 
-let ejercicio1 = document.getElementById("ejercicio1");
-let html1 = "<ul>";
-
 // for clásico
 // for (let i = 0; i < flores.length; i++) {
 //     console.log(flores[i]);
 // }
 
-flores.forEach((flor) => {
-  let textoStock = "";
-  if (!flor.stock) {
-    textoStock = "no ";
-  }
-  html1 += `<li>Flor: ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion} y ${textoStock}tenemos stock</li>`;
-});
+let ejercicio1 = document.getElementById("ejercicio1");
 
-html1 += "</ul>";
-ejercicio1.innerHTML = html1;
+mostrarFlores();
+
+function mostrarFlores() {
+
+  flores.sort((a, b) => {
+    return a.nombre.localeCompare(b.nombre, "es-ES", { numeric: true });
+  }); 
+
+
+  let html1 = "<ul>";
+
+  flores.forEach((flor) => {
+    let textoStock = "";
+    if (!flor.stock) {
+      textoStock = "no ";
+    }
+    html1 += `<li>Flor: ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion} y ${textoStock}tenemos stock</li>`;
+  });
+
+  html1 += "</ul>";
+  ejercicio1.innerHTML = html1;
+}
 
 // ==============================================================================
-
+// EJERCICIO 2
 // Listar las flores de color blanco que florecen en verano
 // Modelo de mensaje de salida:
 // Flor: rosa, de color blanco, florece en verano y tenemos stock
 // se mostrará el resultado en #ejercicio2
 
 let ejercicio2 = document.getElementById("ejercicio2");
+
 let html2 = "<ul>";
 
 flores.forEach((flor) => {
@@ -68,6 +82,8 @@ ejercicio2.innerHTML = html2;
 // A partir del formulario form-seleccion, hay que mostrar que datos
 // corresponden a la selección realizada.
 // Se mostrarán en forma de lista como los modelos anteriores.
+// Si no hay ninguna flor que cumpla las condiciones, se mostrará este mensaje:
+// "No hay flor que cumpla las condiciones"
 
 let formSeleccion = document.getElementById("form-seleccion");
 let radioColor = document.getElementsByName("color");
@@ -105,7 +121,7 @@ formSeleccion.addEventListener("change", (e) => {
       break;
     }
   }
-  stock = Boolean(stock);
+  //   stock = Boolean(stock);
 
   let respuestaHTML = "<ul>";
 
@@ -117,6 +133,7 @@ formSeleccion.addEventListener("change", (e) => {
     }
     // console.log(flores);
     // if (flor.stock == stock) console.log(stock);
+    florStockString = String(flor.stock);
     if (
       flor.color == color &&
       flor.floracion == floracion &&
@@ -135,14 +152,12 @@ formSeleccion.addEventListener("change", (e) => {
 });
 
 // ==============================================================================
-// ==============================================================================
 // EJERCICIO 4
 
 // Obtener la flor que corresponda a la indicación del usuario.
 
 let ejercicio4 = document.getElementById("ejercicio4");
 let formFlor = document.getElementById("form-flor");
-
 
 formFlor.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -155,16 +170,15 @@ formFlor.addEventListener("submit", (e) => {
     return;
   }
 
-  flores.forEach((flor) => { 
+  flores.forEach((flor) => {
     if (flor.nombre.toLocaleLowerCase().includes(respuestaUsuario)) {
       respuestaHTML += `<p>Flor: ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion} y tenemos stock</p>`;
     }
-  })
+  });
   if (respuestaHTML == "") {
     respuestaHTML = "No hay flor que cumpla las condiciones";
   }
   ejercicio4.innerHTML = respuestaHTML;
-
 });
 
 // ==============================================================================
@@ -175,47 +189,30 @@ formFlor.addEventListener("submit", (e) => {
 // flor: cyclamen, color:rosa, floracion: invierno, stock:true
 // Tiene que actualizarse automáticamente la lista del ejercicio 1
 
+let formAddFlower = document.getElementById("form-add-flower");
 
+formAddFlower.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-// Función para actualizar la lista de flores en el HTML
-function actualizarListaFlores() {
-  let html1 = "<ul>";
-  flores.forEach((flor) => {
-    let textoStock = flor.stock ? "" : "no ";
-    html1 += `<li>Flor: ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion} y ${textoStock}tenemos stock</li>`;
-  });
-  html1 += "</ul>";
-  document.getElementById("ejercicio1").innerHTML = html1;
-}
+  let nombre = formAddFlower[0].value.toLocaleLowerCase();
+  let color = formAddFlower[1].value.toLocaleLowerCase();
+  let floracion = formAddFlower[2].value;
+  let stock = formAddFlower[3].checked;
+  let miFlor = {
+    nombre: nombre,
+    color: color,
+    floracion: floracion,
+    stock: stock,
+  };
 
-// Ordenar las flores por nombre al principio
-flores.sort((a, b) => {
-  return a.nombre.localeCompare(b.nombre, "es-ES", { numeric: true });
-});
+  // console.log(miFlor);
+  flores.push(miFlor);
 
-// Mostrar la lista de flores inicial
-actualizarListaFlores();
+  localStorage.setItem("flores", JSON.stringify(flores));
 
-// Manejar el envío del formulario para añadir una nueva flor
-document.getElementById("formulario").addEventListener("submit", function(event) {
-  event.preventDefault(); // Evitar el envío del formulario por defecto
-
-  // Obtener los valores del formulario
-  const nombre = document.getElementById("nombre").value;
-  const color = document.getElementById("color").value;
-  const floracion = document.getElementById("floracion").value;
-  const stock = document.getElementById("stock").value === "true";
-
-  // Añadir la nueva flor al array de flores
-  flores.push({ nombre, color, floracion, stock });
-
- 
-
-  // Actualizar la lista de flores en el HTML
-  actualizarListaFlores();
-
-  // Limpiar el formulario después de añadir la flor
-  document.getElementById("formulario").reset();
+  mostrarFlores();
+  // console.log(flores);
+  // console.log(formAddFlower[3].checked);
 });
 
 
@@ -231,9 +228,6 @@ document.getElementById("formulario").addEventListener("submit", function(event)
 // cerezo: 25.00€
 // cyclamen: 4.50€
 // Tiene que actualizarse automáticamente la lista del ejercicio 1
-
-
-
 
 // ==============================================================================
 // EJERCICIO 7

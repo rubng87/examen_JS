@@ -13,106 +13,86 @@
     <header>
         <h1>Ejercicios DOM - Objetos - Arrays</h1>
     </header>
-    <main>
+<main>
+<section>
+    <h2>Ejercicio 1</h2>
+  <p>Listado de Array con Objetos</p>
+    <div id="ejercicio1"></div>
+</section>
+  <section>
+    <h2>Ejercicio 2</h2>
+    <div id="ejercicio2"></div>
+</section>
+<section>
+    <h2>Selección por características</h2>
+    <form id="form-seleccion">
+        <fieldset>
+            <div>
+                <label><input type="radio" name="color" value="" checked>Ninguno</label>
+                <label><input type="radio" name="color" value="blanco">Blanco</label>
+                <label><input type="radio" name="color" value="rojo">Rojo</label>
+                <label><input type="radio" name="color" value="rosa">Rosa</label>
+            </div>
+            <div>
+                <label><input type="radio" name="floracion" value="" checked>Sin datos</label>
+                <label><input type="radio" name="floracion" value="primavera">Primavera</label>
+                <label><input type="radio" name="floracion" value="verano">Verano</label>
+                <label><input type="radio" name="floracion" value="otoño">Otoño</label>
+                <label><input type="radio" name="floracion" value="invierno">Invierno</label>
+            </div>
+            <div>
+                <label><input type="radio" name="stock" value="" checked>Sin datos</label>
+                <label><input type="radio" name="stock" value="true">Con stock</label> 
+                <label><input type="radio" name="stock" value="false">Sin stock</label>
+            </div>
+        </fieldset>
+    </form>
+  <div id="ejercicio3"></div>
+</section>
+  
+<section>
+    <h2>Seleccionar flor</h2>
+    <form id="form-flor">
+        <label for="input-flor">Selecciona tu flor</label>
+        <input type="text" name="flor" id="input-flor">
+        <input type="submit" value="Encuentra la flor">
+    </form>
+    <div id="ejercicio4"></div>
+</section>
+  <br /><br /><br /><br />
         <section>
-            <h2>Ejercicio 1</h2>
-            <p>Listado de Array con Objetos</p>
-            <div id="ejercicio1"></div>
-        </section>
-        <section>
-            <h2>Ejercicio 2</h2>
-            <div id="ejercicio2"></div>
-        </section>
-        <section>
-            <h2>Selección por características</h2>
-            <form id="form-seleccion">
-                <fieldset>
-                    <div>
-                        <label><input type="radio" name="color" value="" checked>Ninguno</label>
-                        <label><input type="radio" name="color" value="blanco">Blanco</label>
-                        <label><input type="radio" name="color" value="rojo">Rojo</label>
-                        <label><input type="radio" name="color" value="rosa">Rosa</label>
-                    </div>
-                    <div>
-                        <label><input type="radio" name="floracion" value="" checked>Sin datos</label>
-                        <label><input type="radio" name="floracion" value="primavera">Primavera</label>
-                        <label><input type="radio" name="floracion" value="verano">Verano</label>
-                        <label><input type="radio" name="floracion" value="otoño">Otoño</label>
-                        <label><input type="radio" name="floracion" value="invierno">Invierno</label>
-                    </div>
-                    <div>
-                        <label><input type="radio" name="stock" value="" checked>Sin datos</label>
-                        <label><input type="radio" name="stock" value="true">Con stock</label>
-                        <label><input type="radio" name="stock" value="false">Sin stock</label>
-                    </div>
-                </fieldset>
-            </form>
-            <div id="ejercicio3"></div>
-        </section>
-        <section>
-            <h2>Seleccionar flor</h2>
-            <form id="form-flor">
-                <label for="input-flor">Selecciona tu flor</label>
-                <input type="text" name="flor" id="input-flor" required>
-                <input type="submit" value="Encuentra la flor">
-            </form>
-            <div id="ejercicio4"></div>
-        </section>
-        <section>
-            <h2>Ejercicio 5</h2>
-            <div id="ejercicio5"></div>
-        </section>
-        <section>
-            <h2>Añadir Flor</h2>
-            <form id="formulario">
-                <label for="nombre">Nombre:</label><br>
-                <input type="text" id="nombre" name="nombre" required><br>
-                <label for="color">Color:</label><br>
-                <input type="text" id="color" name="color" required><br>
-                <label for="floracion">Floración:</label><br>
-                <input type="text" id="floracion" name="floracion" required><br>
-                <label for="stock">Stock:</label>
-                <select id="stock" name="stock" required>
-                    <option value="true">Sí</option>
-                    <option value="false">No</option>
-                </select><br><br>
-                <button type="submit">Añadir Flor</button>
-            </form>
-        </section>
-        <section>
-            <h2>Ejercicio 6</h2>
-            <div id="ejercicio6"></div>
-        </section>
-        <h2>Añadir Precio a Flor</h2>
-        <form id="formularioPrecio">
-            <label for="nombreFlor">Nombre de la Flor:</label><br>
-            <select id="nombreFlor" name="nombreFlor" required>
-                <option value="rosa roja">Rosa Roja</option>
-                <option value="rosa blanca">Rosa Blanca</option>
-                <option value="jazmin">Jazmín</option>
-                <option value="crisantemo">Crisantemo</option>
-                <option value="cerezo">Cerezo</option>
-                <option value="cyclamen">Cyclamen</option>
-            </select><br>
-            <label for="precioFlor">Precio (€):</label><br>
-            <select id="precioFlor" name="Flor" required>
-                <option value="8.00">8.00</option>
-                <option value="10.00">10.00</option>
-                <option value="12.00">12.00</option>
-                <option value="5.00">5.00</option>
-                <option value="25.00">25.00</option>
-                <option value="4.50">4.50</option>
-            </select><br>
-            <button type="submit">Añadir Precio</button>
+        <form id="form-add-flower">
+          <div>
+            <label for="nombre">Nombre de la flor</label>
+            <input type="text" name="nombre" id="nombre" />
+          </div>
+          <div>
+            <label for="color">Color de la flor</label>
+            <input type="text" name="color" id="color" />
+          </div>
+          <div>
+            <select name="floracion" id="floracion">
+              <option value="primavera" selected>Primavera</option>
+              <option value="verano">Verano</option>
+              <option value="otoño">Otoño</option>
+              <option value="invierno">Invierno</option>
+            </select>
+          </div>
+          <div>
+            <input type="radio" name="stock" id="stockTrue" checked /><label
+              for="stockTrue"
+              >Con stock</label
+            >
+            <input type="radio" name="stock" id="stockFalse" /><label
+              for="stockFalse"
+              >Sin stock</label
+            >
+          </div>
+          <div>
+            <button type="submit">Añadir la flor</button>
+          </div>
         </form>
-
-        <div id="ejercicio6">
-            <!-- La lista de flores se mostrará aquí -->
-        </div>
-
-    </main>
-
-    <script src="js/app.js"></script>
-</body>
-
-</html>
+      </section>
+   <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+   
+</main>
