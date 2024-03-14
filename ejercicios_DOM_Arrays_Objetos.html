@@ -53,7 +53,7 @@
             <h2>Seleccionar flor</h2>
             <form id="form-flor">
                 <label for="input-flor">Selecciona tu flor</label>
-                <input type="text" name="flor" id="input-flor">
+                <input type="text" name="flor" id="input-flor" required>
                 <input type="submit" value="Encuentra la flor">
             </form>
             <div id="ejercicio4"></div>
@@ -75,12 +75,41 @@
                 <select id="stock" name="stock" required>
                     <option value="true">Sí</option>
                     <option value="false">No</option>
-                </select><br>
+                </select><br><br>
                 <button type="submit">Añadir Flor</button>
             </form>
-
-            
         </section>
+        <section>
+            <h2>Ejercicio 6</h2>
+            <div id="ejercicio6"></div>
+        </section>
+        <h2>Añadir Precio a Flor</h2>
+        <form id="formularioPrecio">
+            <label for="nombreFlor">Nombre de la Flor:</label><br>
+            <select id="nombreFlor" name="nombreFlor" required>
+                <option value="rosa roja">Rosa Roja</option>
+                <option value="rosa blanca">Rosa Blanca</option>
+                <option value="jazmin">Jazmín</option>
+                <option value="crisantemo">Crisantemo</option>
+                <option value="cerezo">Cerezo</option>
+                <option value="cyclamen">Cyclamen</option>
+            </select><br>
+            <label for="precioFlor">Precio (€):</label><br>
+            <select id="precioFlor" name="Flor" required>
+                <option value="8.00">8.00</option>
+                <option value="10.00">10.00</option>
+                <option value="12.00">12.00</option>
+                <option value="5.00">5.00</option>
+                <option value="25.00">25.00</option>
+                <option value="4.50">4.50</option>
+            </select><br>
+            <button type="submit">Añadir Precio</button>
+        </form>
+
+        <div id="ejercicio6">
+            <!-- La lista de flores se mostrará aquí -->
+        </div>
+
     </main>
 
     <script src="js/app.js"></script>
