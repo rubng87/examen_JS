@@ -222,6 +222,28 @@ document.getElementById("formulario").addEventListener("submit", function(event)
 });
 
 
+// Claro, te explicaré paso a paso cómo funciona el código:
+
+// Array de Flores Inicial: Al comienzo del script en JavaScript, se define un array llamado flores que contiene objetos JavaScript. Cada objeto representa una flor y tiene propiedades como nombre, color, período de floración y disponibilidad de stock.
+
+// Función para Actualizar la Lista de Flores: Se define una función llamada actualizarListaFlores() que se encarga de generar el HTML para mostrar la lista de flores en la página. Esta función recorre el array de flores y genera elementos de lista (<li>) para cada flor, incluyendo su nombre, color, período de floración y disponibilidad de stock. Luego de generar todo el HTML necesario, actualiza el contenido del elemento con el id ejercicio1 en la página.
+
+// Ordenamiento Inicial del Array de Flores: Antes de mostrar la lista de flores en la página, se ordena el array de flores alfabéticamente por el nombre de las flores utilizando el método sort().
+
+// Mostrar la Lista de Flores Inicial: Se llama a la función actualizarListaFlores() para que inicialmente muestre la lista de flores en la página.
+
+// Manejo del Envío del Formulario: Se agrega un event listener al formulario (<form>) que escucha el evento de envío (submit). Cuando el formulario se envía, se ejecuta una función que realiza lo siguiente:
+
+// Evita el comportamiento por defecto del formulario de recargar la página (event.preventDefault()).
+// Obtiene los valores de los campos del formulario (nombre, color, período de floración y disponibilidad de stock).
+// Crea un nuevo objeto JavaScript que representa la nueva flor con los valores obtenidos.
+// Añade el nuevo objeto al array de flores (flores.push()).
+// Ordena el array de flores nuevamente por nombre.
+// Llama a la función actualizarListaFlores() para actualizar la lista de flores en la página con la nueva flor agregada.
+// Limpia el formulario para que esté listo para agregar otra flor (document.getElementById("formulario").reset()).
+// En resumen, este código HTML y JavaScript crea un formulario que permite añadir nuevas flores al array, mostrando automáticamente la lista actualizada de flores en la página sin necesidad de recargarla.
+
+
 // ==============================================================================
 // EJERCICIO 6
 
