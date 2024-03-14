@@ -166,3 +166,83 @@ formFlor.addEventListener("submit", (e) => {
   ejercicio4.innerHTML = respuestaHTML;
 
 });
+
+// ==============================================================================
+// EJERCICIO 5
+
+// Crea y programa un formulario para añadir flores al array.
+// Por ejemplo:
+// flor: cyclamen, color:rosa, floracion: invierno, stock:true
+// Tiene que actualizarse automáticamente la lista del ejercicio 1
+
+
+
+// Función para actualizar la lista de flores en el HTML
+function actualizarListaFlores() {
+  let html1 = "<ul>";
+  flores.forEach((flor) => {
+    let textoStock = flor.stock ? "" : "no ";
+    html1 += `<li>Flor: ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion} y ${textoStock}tenemos stock</li>`;
+  });
+  html1 += "</ul>";
+  document.getElementById("ejercicio1").innerHTML = html1;
+}
+
+// Ordenar las flores por nombre al principio
+flores.sort((a, b) => {
+  return a.nombre.localeCompare(b.nombre, "es-ES", { numeric: true });
+});
+
+// Mostrar la lista de flores inicial
+actualizarListaFlores();
+
+// Manejar el envío del formulario para añadir una nueva flor
+document.getElementById("formulario").addEventListener("submit", function(event) {
+  event.preventDefault(); // Evitar el envío del formulario por defecto
+
+  // Obtener los valores del formulario
+  const nombre = document.getElementById("nombre").value;
+  const color = document.getElementById("color").value;
+  const floracion = document.getElementById("floracion").value;
+  const stock = document.getElementById("stock").value === "true";
+
+  // Añadir la nueva flor al array de flores
+  flores.push({ nombre, color, floracion, stock });
+
+  // Ordenar las flores por nombre
+  flores.sort((a, b) => {
+    return a.nombre.localeCompare(b.nombre, "es-ES", { numeric: true });
+  });
+
+  // Actualizar la lista de flores en el HTML
+  actualizarListaFlores();
+
+  // Limpiar el formulario después de añadir la flor
+  document.getElementById("formulario").reset();
+});
+
+
+// ==============================================================================
+// EJERCICIO 6
+
+// Crea y programa un formulario para añadir precios a las flores:
+// rosa roja : 8.00€
+// rosa blanca : 10.00€
+// jazmin: 12.00€
+// crisantemo: 5.00€
+// cerezo: 25.00€
+// cyclamen: 4.50€
+// Tiene que actualizarse automáticamente la lista del ejercicio 1
+
+// ==============================================================================
+// EJERCICIO 7
+
+// Crea la forma de eliminar elementos del array
+// Tiene que actualizarse automáticamente la lista del ejercicio 1
+
+// ==============================================================================
+// EJERCICIO 8
+
+// Crea la forma de editar elementos del array de flores
+// Todas las propiedades deben poder ser editadas: nombre, color, floración, stock  y precio
+// Tiene que actualizarse automáticamente la lista del ejercicio 1
